@@ -115,4 +115,4 @@ sudo chown -R swift:swift /etc/swift
 sudo service memcached restart
 sudo service swift-proxy restart
 sudo swift-init all start
-sudo swift-init all reload #in case that the services are already running 
+sudo swift-init all reload #In case that the services are already running 
