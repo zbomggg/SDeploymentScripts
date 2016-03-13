@@ -7,11 +7,15 @@ source conf_func.sh
 sudo cp $base_dir/sources.list-sample /etc/apt/sources.list
 sudo sed -i "s/repo_server/$repo_server/g" /etc/apt/sources.list
 
-sudo apt-get update && apt-get dist-upgrade -y --force-yes
-sudo apt-get install software-properties-common
-sudo add-apt-repository cloud-archive:liberty
+sudo apt-get update
+sudo apt-get dist-upgrade -y --force-yes
+apt-get install ubuntu-cloud-keyring
 
-sudo apt-get update && apt-get dist-upgrade -y --force-yes
+#sudo apt-get install software-properties-common
+#sudo add-apt-repository cloud-archive:liberty
+
+sudo apt-get update 
+sudo apt-get dist-upgrade -y --force-yes
 
 #Install the time synchronize service
 sudo apt-get install chrony -y

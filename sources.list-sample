@@ -61,4 +61,4 @@ deb-src http://repo_server/ubuntu trusty-security multiverse
 # deb http://extras.ubuntu.com/ubuntu trusty main
 # deb-src http://extras.ubuntu.com/ubuntu trusty main
 
-#deb http://repo_server/kilo trusty-updates/kilo main
+deb http://repo_server/openstack trusty-updates/kilo main
