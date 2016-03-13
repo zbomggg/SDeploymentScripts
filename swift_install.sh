@@ -20,11 +20,11 @@ if [ $primary_ip != $time_server ]; then
   sudo service chrony restart
 fi
 
+echo "Please check the source list and time synchronize service"
+read aaaaa
+
 # install the proxy server
 sudo apt-get install -y --force-yes swift swift-proxy python-swiftclient memcached
-
-echo "please check"
-read aaaaa
 
 cp $base_dir/proxy-server.conf-sample $base_dir/proxy-server.conf
 SetKey DEFAULT swift_dir /etc/swift $base_dir/proxy-server.conf
@@ -35,7 +35,7 @@ SetKey filter:cache memcache_servers 127.0.0.1:11211 $base_dir/proxy-server.conf
 sudo mkdir /etc/swift
 sudo mv $base_dir/proxy-server.conf /etc/swift/proxy-server.conf
 
-echo "please check"
+echo "Please check the proxy server"
 read aaaaa
 
 # install the storage server
@@ -50,20 +50,18 @@ do
     sudo mount /srv/node/${dev}
 done
 
-echo "please check /etc/fstab"
+echo "Please check /etc/fstab and the mounted drives"
 read aaaaa
 
 sudo cp $base_dir/rsyncd.conf-sample /etc/rsyncd.conf
-sudo sed -i "5c address=$primary_ip" /etc/rsyncd.conf
+sudo sed -i "5c address=$replica_ip" /etc/rsyncd.conf
 sudo sed -i "8c RSYNC_ENABLE=true" /etc/default/rsync
+sudo service rsync restart
 
-echo "please check rsyncd.conf"
+echo "Please check the rsync service including the log, configures and the service status"
 read aaaaa
 
 sudo apt-get -y --force-yes install swift swift-account swift-container swift-object
-
-echo "please check"
-read aaaaa
 
 cp $base_dir/account-server.conf-sample $base_dir/account-server.conf
 SetKey DEFAULT bind_ip $primary_ip $base_dir/account-server.conf
@@ -101,7 +99,7 @@ else
   sudo $base_dir/pull_rings.sh
 fi
 
-echo "please check the rings"
+echo "Please check the rings"
 read aaaaa
 
 #Finalize installation
@@ -110,10 +108,11 @@ ModKey "swift-hash" swift_hash_path_suffix $hash_path_suffix $base_dir/swift.con
 ModKey "swift-hash" swift_hash_path_prefix $hash_path_prefix $base_dir/swift.conf
 sudo mv $base_dir/swift.conf /etc/swift/swift.conf
 
-echo "please check swift.conf"
+echo "Please check swift.conf"
 read aaaaa
 
 sudo chown -R swift:swift /etc/swift
 sudo service memcached restart
 sudo service swift-proxy restart
 sudo swift-init all start
+sudo swift-init all reload #in case that the services are already running 
