@@ -1,6 +1,5 @@
 [swift-hash]
 
-# swift_hash_path_suffix and swift_hash_path_prefix are used as part of the
 # the hashing algorithm when determining data placement in the cluster.
 # These values should remain secret and MUST NOT change
 # once a cluster has been deployed.
