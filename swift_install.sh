@@ -14,7 +14,7 @@ apt-get install ubuntu-cloud-keyring
 #sudo apt-get install software-properties-common
 #sudo add-apt-repository cloud-archive:liberty
 
-sudo apt-get update 
+sudo apt-get update
 sudo apt-get dist-upgrade -y --force-yes
 
 #Install the time synchronize service
@@ -46,11 +46,11 @@ read aaaaa
 sudo apt-get install -y xfsprogs rsync
 for dev in ${devices[@]}
 do
-    sudo umount /dev/cciss/${dev}
-    sudo mkfs.xfs -f /dev/cciss/${dev}
+    sudo umount /dev/${dev}
+    sudo mkfs.xfs -f /dev/${dev}
     sudo mkdir -p /srv/node/${dev}
     sudo sed -i "/\/srv\/node\/${dev}/d" /etc/fstab
-    echo "/dev/cciss/${dev} /srv/node/${dev} xfs noatime,nodiratime,nobarrier,logbufs=8 0 2" | sudo tee -a /etc/fstab
+    echo "/dev/${dev} /srv/node/${dev} xfs noatime,nodiratime,nobarrier,logbufs=8 0 2" | sudo tee -a /etc/fstab
     sudo mount /srv/node/${dev}
 done
 
@@ -100,11 +100,13 @@ sudo mkdir -p /var/cache/swift
 sudo chown -R root:swift /var/cache/swift
 
 #Create the rings
+cd $base_dir
 if [ "$ring_server" = "$primary_ip" ]; then
-  sudo $base_dir/create_rings.sh
+  sudo ./create_rings.sh
 else
-  sudo $base_dir/pull_rings.sh
+  sudo ./pull_rings.sh
 fi
+cd -
 
 echo "Please check the rings"
 read aaaaa
