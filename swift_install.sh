@@ -1,15 +1,24 @@
-#To install the kilo version of swift
+#To install the liberty version of swift
 #should be run on a newly installed ubuntu14.04 server
 source localrc.sh
 source conf_func.sh
 
+#Prepare the repository for liberty
 sudo cp $base_dir/sources.list-sample /etc/apt/sources.list
 sudo sed -i "s/repo_server/$repo_server/g" /etc/apt/sources.list
 
-apt-get install ubuntu-cloud-keyring
+sudo apt-get update && apt-get dist-upgrade -y --force-yes
+sudo apt-get install software-properties-common
+sudo add-apt-repository cloud-archive:liberty
 
-sudo apt-get update
-sudo apt-get dist-upgrade -y --force-yes
+sudo apt-get update && apt-get dist-upgrade -y --force-yes
+
+#Install the time synchronize service
+sudo apt-get install chrony -y
+if [ $primary_ip != $time_server ]; then
+  sudo sed -i "1 i\server $time_server iburst" /etc/chrony/chrony.conf
+  sudo service chrony restart
+fi
 
 # install the proxy server
 sudo apt-get install -y --force-yes swift swift-proxy python-swiftclient memcached
@@ -86,8 +95,11 @@ sudo mkdir -p /var/cache/swift
 sudo chown -R swift:swift /var/cache/swift
 
 #Create the rings
-# sudo $base_dir/create_ring.sh
-sudo $base_dir/pull_rings.sh
+if [ "$ring_server" = "$primary_ip" ]; then
+  sudo $base_dir/create_rings.sh
+else
+  sudo $base_dir/pull_rings.sh
+fi
 
 echo "please check the rings"
 read aaaaa

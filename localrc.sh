@@ -1,13 +1,15 @@
-export repo_server=10.64.3.39
-export base_dir=/home/test/inst
+export ring_server=172.16.169.37
+export repo_server=172.16.169.240
+export time_server=172.16.169.37
 
-export primary_ip=10.64.3.41
-export replica_ip=192.168.5.6
+export base_dir=~/SDeploymentScripts
+export primary_ip=172.16.169.37
+export replica_ip=192.168.5.12
 
 export devices=(
-c0d1
-c0d2
+sdb
+sdc
 )
 
-export hash_path_suffix=hahahaha
-export hash_path_prefix=lollollol
+export hash_path_suffix=demosuffix
+export hash_path_prefix=demoprefix

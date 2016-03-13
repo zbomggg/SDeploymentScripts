@@ -1,4 +1,4 @@
-# 
+#
 
 # deb cdrom:[Ubuntu-Server 14.04.1 LTS _Trusty Tahr_ - Release amd64 (20140722.3)]/ trusty main restricted
 
@@ -22,9 +22,9 @@ deb-src http://repo_server/ubuntu/ trusty universe
 deb http://repo_server/ubuntu/ trusty-updates universe
 deb-src http://repo_server/ubuntu/ trusty-updates universe
 
-## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu 
-## team, and may not be under a free licence. Please satisfy yourself as to 
-## your rights to use the software. Also, please note that software in 
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## team, and may not be under a free licence. Please satisfy yourself as to
+## your rights to use the software. Also, please note that software in
 ## multiverse WILL NOT receive any review or updates from the Ubuntu
 ## security team.
 deb http://repo_server/ubuntu/ trusty multiverse
@@ -60,4 +60,5 @@ deb-src http://repo_server/ubuntu trusty-security multiverse
 ## developers who want to ship their latest software.
 # deb http://extras.ubuntu.com/ubuntu trusty main
 # deb-src http://extras.ubuntu.com/ubuntu trusty main
-deb http://repo_server/kilo trusty-updates/kilo main
+
+#deb http://repo_server/kilo trusty-updates/kilo main
