@@ -68,7 +68,7 @@ read aaaaa
 sudo apt-get -y --force-yes install swift swift-account swift-container swift-object
 
 cp $base_dir/account-server.conf-sample $base_dir/account-server.conf
-SetKey DEFAULT bind_ip $primary_ip $base_dir/account-server.conf
+# SetKey DEFAULT bind_ip $primary_ip $base_dir/account-server.conf
 SetKey DEFAULT user swift $base_dir/account-server.conf
 SetKey DEFAULT swift_dir /etc/swift $base_dir/account-server.conf
 SetKey DEFAULT devices /srv/node $base_dir/account-server.conf
@@ -77,7 +77,7 @@ SetKey filter:recon recon_cache_path /var/cache/swift $base_dir/account-server.c
 sudo mv $base_dir/account-server.conf /etc/swift/account-server.conf
 
 cp $base_dir/container-server.conf-sample $base_dir/container-server.conf
-SetKey DEFAULT bind_ip $primary_ip $base_dir/container-server.conf
+# SetKey DEFAULT bind_ip $primary_ip $base_dir/container-server.conf
 SetKey DEFAULT user swift $base_dir/container-server.conf
 SetKey DEFAULT swift_dir /etc/swift $base_dir/container-server.conf
 SetKey DEFAULT devices /srv/node $base_dir/container-server.conf
@@ -86,7 +86,7 @@ SetKey filter:recon recon_cache_path /var/cache/swift $base_dir/container-server
 sudo mv $base_dir/container-server.conf /etc/swift/container-server.conf
 
 cp $base_dir/object-server.conf-sample $base_dir/object-server.conf
-SetKey DEFAULT bind_ip $primary_ip $base_dir/object-server.conf
+# SetKey DEFAULT bind_ip $primary_ip $base_dir/object-server.conf
 SetKey DEFAULT user swift $base_dir/object-server.conf
 SetKey DEFAULT swift_dir /etc/swift $base_dir/object-server.conf
 SetKey DEFAULT devices /srv/node $base_dir/object-server.conf
