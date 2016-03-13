@@ -93,7 +93,7 @@ sudo mv $base_dir/object-server.conf /etc/swift/object-server.conf
 
 sudo chown -R swift:swift /srv/node
 sudo mkdir -p /var/cache/swift
-sudo chown -R swift:swift /var/cache/swift
+sudo chown -R root:swift /var/cache/swift
 
 #Create the rings
 if [ "$ring_server" = "$primary_ip" ]; then
@@ -114,7 +114,7 @@ sudo mv $base_dir/swift.conf /etc/swift/swift.conf
 echo "Please check swift.conf"
 read aaaaa
 
-sudo chown -R swift:swift /etc/swift
+sudo chown -R root:swift /etc/swift
 sudo service memcached restart
 sudo service swift-proxy restart
 sudo swift-init all start
