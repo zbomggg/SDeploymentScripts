@@ -44,9 +44,12 @@ read aaaaa
 
 # install the storage server
 sudo apt-get install -y xfsprogs rsync
+# in case that swift have already been installed and are running
+sudo swift-init all stop
+# format the disks with xfs
 for dev in ${devices[@]}
 do
-    sudo umount /dev/${dev}
+    sudo umount -f /dev/${dev}
     sudo mkfs.xfs -f /dev/${dev}
     sudo mkdir -p /srv/node/${dev}
     sudo sed -i "/\/srv\/node\/${dev}/d" /etc/fstab
