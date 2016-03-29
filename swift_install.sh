@@ -9,7 +9,7 @@ sudo sed -i "s/repo_server/$repo_server/g" /etc/apt/sources.list
 
 sudo apt-get update
 sudo apt-get dist-upgrade -y --force-yes
-apt-get install ubuntu-cloud-keyring
+sudo apt-get install ubuntu-cloud-keyring
 
 #sudo apt-get install software-properties-common
 #sudo add-apt-repository cloud-archive:liberty
